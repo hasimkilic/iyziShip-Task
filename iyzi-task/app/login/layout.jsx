@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function TaskLayout({ children }) {
     return (
-        <body className={`${inter.className} h-screen w-full bg-[#F3F6F9]`}>
+        <div className={`${inter.className} h-screen w-full bg-[#F3F6F9]`}>
             {children}
-        </body>
+        </div>
     );
 }
