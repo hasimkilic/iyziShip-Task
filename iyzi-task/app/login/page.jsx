@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.svg";
@@ -10,11 +10,18 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocusedEposta, setIsFocusedEposta] = useState(false);
   const [isFocusedPass, setIsFocusedPass] = useState(false);
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const subjects = {
+    email,
+    password,
+  };
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+const handleRegister = () =>{
+  console.log(subjects);
+}
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -30,9 +37,8 @@ const Login = () => {
           </div>
         </div>
       </div>
-
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className=" space-y-6" action="#" method="POST">
+        <div className="space-y-6">
           <div className="relative">
             <label
               htmlFor="email"
@@ -49,6 +55,8 @@ const Login = () => {
                 onBlur={() => {
                   setIsFocusedEposta(false);
                 }}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 id="email"
                 name="email"
                 type="email"
@@ -59,46 +67,44 @@ const Login = () => {
             </div>
           </div>
 
-          <div>
-            <div className="relative">
-              <label
-                htmlFor="password"
-                className={`${isFocusedPass ? "text-[#007FFF]" : "text-[#BDBDBD]"
-                  } bg-[#F3F6F9] px-1 absolute -top-2.5 left-2 block text-sm font-medium leading-6  mx-2`}
-              >
-                Şifre
-              </label>
-              <div className="mt-2 flex justify-end items-center">
-                <input
-                  onFocus={() => {
-                    setIsFocusedPass(true);
-                  }}
-                  onBlur={() => {
-                    setIsFocusedPass(false);
-                  }}
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete="password"
-                  placeholder="••••••••"
-                  className="bg-[#F3F6F9] block w-full text-sm pl-5 text-[#BDBDBD] rounded-[10px] border-0 py-3 shadow-sm ring-1 ring-inset ring-[#BBBBBB] placeholder:text-[#BDBDBD] focus:ring-2 focus:ring-inset focus:ring-[#007FFF] sm:text-sm sm:leading-6"
-                />
-                <span onClick={toggleShowPassword} className="absolute mr-3">
-                  <Image src={Password} alt="password" />
-                </span>
+          <div className="relative">
+            <label
+              htmlFor="password"
+              className={`${isFocusedPass ? "text-[#007FFF]" : "text-[#BDBDBD]"
+                } bg-[#F3F6F9] px-1 absolute -top-2.5 left-2 block text-sm font-medium leading-6  mx-2`}
+            >
+              Şifre
+            </label>
+            <div className="mt-2 flex justify-end items-center">
+              <input
+                onFocus={() => {
+                  setIsFocusedPass(true);
+                }}
+                onBlur={() => {
+                  setIsFocusedPass(false);
+                }}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="password"
+                placeholder="••••••••"
+                className="bg-[#F3F6F9] block w-full text-sm pl-5 text-[#BDBDBD] rounded-[10px] border-0 py-3 shadow-sm ring-1 ring-inset ring-[#BBBBBB] placeholder:text-[#BDBDBD] focus:ring-2 focus:ring-inset focus:ring-[#007FFF] sm:text-sm sm:leading-6"
+              />
+              <div onClick={toggleShowPassword} className="absolute mr-3 cursor-pointer">
+                <Image src={Password} alt="password-icon" />
               </div>
             </div>
           </div>
-
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-[#007FFF] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#007FFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007FFF]"
-            >
-              <Link href={"/task"}>Giriş Yap</Link>
-            </button>
-          </div>
-        </form>
+          <button
+            type="submit"
+            onClick={handleRegister}
+            className="flex w-full justify-center rounded-md bg-[#007FFF] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#007FFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007FFF]"
+          >
+            <Link href={"/task"}>Giriş Yap</Link>
+          </button>
+        </div>
       </div>
     </div>
   );

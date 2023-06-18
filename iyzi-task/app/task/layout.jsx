@@ -9,13 +9,11 @@ export const metadata = {
 
 export default function TaskLayout({ children }) {
     return (
-        <body className={`${open_sans.className} h-screen w-full bg-[#F3F6F9]`}>
-            <div>
+        <div className={`${open_sans.className} h-screen w-full bg-[#F3F6F9]`}>
                 <Sidebar />
                 <main className="py-10 lg:pl-72">
                     <div className="px-4 sm:px-6 lg:px-8">{children}</div>
                 </main>
-            </div>
-        </body>
+        </div>
     );
 }
